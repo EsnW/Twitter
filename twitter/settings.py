@@ -26,7 +26,7 @@ SECRET_KEY = '$)-5do*sr2c2++tk0wh$ptq72ab1b2+k+0e$@iu7^2p@ud$mpt'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '192.168.56.1', 'localhost']
-
+INTERNAL_IPS=['10.0.2.2']
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # project apps
     'accounts',
+    'tweets',
 ]
 
 REST_FRAMEWORK = {
@@ -136,4 +137,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-INTERNAL_IPS=['10.0.2.2']
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+    }
+}
